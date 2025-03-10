@@ -28,6 +28,7 @@ public class SpringSecurityConfig {
         .authorizeHttpRequests(auth ->
             auth
                 .requestMatchers(HttpMethod.POST, "/api/auth/signup", "/api/auth/refresh").permitAll()
+                .requestMatchers(HttpMethod.GET, "/ping").permitAll()
                 .anyRequest().authenticated())
         .addFilter(new JwtAuthenticationFilter(authenticationManager()))
         .addFilter(new JwtValidationFilter(authenticationManager()))
